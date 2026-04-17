@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studio Lens — Fotografia Profissional</title>
+  <title>Studio FK — Fotografia Profissional</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -14,7 +14,10 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#home" class="logo">Studio<em>Lens</em></a>
+      <a href="#home" class="logo">
+        <img src="logo-white.png" alt="Studio FK" class="logo-img logo-img--white" />
+        <img src="logo.jpg" alt="Studio FK" class="logo-img logo-img--dark" />
+      </a>
       <ul class="nav-links">
         <li><a href="#home" class="nav-link active" data-section="home">Início</a></li>
         <li><a href="#catalogos" class="nav-link" data-section="catalogos">Catálogos</a></li>
@@ -42,7 +45,7 @@
     <div class="hero-content">
       <p class="hero-eyebrow">Fotografia de memórias</p>
       <h1 class="hero-title">Cada momento<br /><em>merece ser eterno</em></h1>
-      <p class="hero-sub">Casamentos · Festas infantis · 15 anos · Aniversários · Pré-weds</p>
+      <p class="hero-sub">Casamentos · Festas infantis · 15 anos · Aniversários · Pré-weds · Corporativo</p>
       <a href="#catalogos" class="btn-hero">Ver catálogos</a>
     </div>
     <div class="hero-scroll">
@@ -137,6 +140,27 @@
           </div>
         </div>
 
+        <div class="catalog-card catalog-card--corp" data-category="corporativo">
+          <div class="card-img-wrap">
+            <div class="card-img" style="background: linear-gradient(135deg,#3a3a3a,#1a1a1a)">
+              <svg viewBox="0 0 80 80" width="48" height="48" fill="none">
+                <rect x="16" y="28" width="48" height="34" rx="3" fill="rgba(255,255,255,0.85)"/>
+                <rect x="28" y="16" width="24" height="14" rx="2" fill="rgba(255,255,255,0.6)"/>
+                <rect x="34" y="42" width="12" height="10" rx="1" fill="#3a3a3a"/>
+                <circle cx="40" cy="36" r="4" fill="#3a3a3a"/>
+              </svg>
+            </div>
+            <div class="card-overlay">
+              <button class="card-btn" onclick="openCatalog('corporativo')">Ver fotos</button>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>Corporativo</h3>
+            <p>Eventos, headshots e produtos profissionais</p>
+            <span class="card-tag">Empresas</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -227,6 +251,7 @@
               <option value="debutante">15 Anos</option>
               <option value="aniversario">Aniversário</option>
               <option value="prewedd">Pré-Wedd</option>
+              <option value="corporativo">Corporativo</option>
               <option value="outro">Outro</option>
             </select>
           </div>
@@ -244,8 +269,8 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-inner">
-      <p class="footer-logo">Studio<em>Lens</em></p>
-      <p class="footer-copy">© 2025 StudioLens. Todos os direitos reservados.</p>
+      <img src="logo.jpg" alt="Studio FK" style="height:32px;filter:invert(1) brightness(2);" />
+      <p class="footer-copy">© 2025 Studio FK. Todos os direitos reservados.</p>
     </div>
   </footer>
 
