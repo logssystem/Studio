@@ -8,13 +8,40 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="estilo.css" />
+  <style>
+    .nav {
+      position: fixed !important;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(250,249,247,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+      transition: background 0.35s, box-shadow 0.35s;
+    }
+    .nav.on-hero {
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+    .nav.on-hero .logo-studio { color: rgba(255,255,255,0.9) !important; }
+    .nav.on-hero .logo-fk { color: #c9b49a !important; }
+    .nav.on-hero .nav-link { color: rgba(255,255,255,0.8) !important; }
+    .nav.on-hero .nav-link::after { background: #fff !important; }
+    .nav.on-hero .hamburger span { background: #fff !important; }
+    .logo { display: flex; align-items: baseline; gap: 0.15em; text-decoration: none; flex-shrink: 0; }
+    .logo-studio { font-family: 'DM Sans', sans-serif; font-weight: 200; font-size: 0.95rem; letter-spacing: 0.25em; text-transform: lowercase; color: #1a1209; transition: color 0.3s; }
+    .logo-fk { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 1.6rem; color: #8a6347; transition: color 0.3s; line-height: 1; }
+    .logo--footer .logo-studio { color: rgba(255,255,255,0.35); }
+    .logo--footer .logo-fk { color: #c9b49a; }
+  </style>
 </head>
 <body>
 
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="#home" class="logo">
-        <span class="logo-studio">studio</span><span class="logo-fk">FK</span>
+        <img src="assets/logo/logo-fk.png" alt="Studio FK" class="logo-img" />
       </a>
       <ul class="nav-links">
         <li><a href="#home" class="nav-link active" data-section="home">Início</a></li>
@@ -235,7 +262,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <a href="#home" class="logo logo--footer">
-        <span class="logo-studio">studio</span><span class="logo-fk">FK</span>
+        <img src="assets/logo/logo-fk.png" alt="Studio FK" class="logo-img" />
       </a>
       <p class="footer-copy">© 2025 Studio FK. Todos os direitos reservados.</p>
     </div>
