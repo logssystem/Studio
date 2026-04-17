@@ -290,7 +290,9 @@ img { max-width: 100%; display: block; }
 .contato .section-header.light .section-desc { color: rgba(255,255,255,0.5); }
 .contato-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
 .info-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.75rem; }
-.info-icon { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brown-light); flex-shrink: 0; transition: background 0.3s; }
+.info-icon { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brown-light); flex-shrink: 0; transition: background 0.3s, transform 0.2s; }
+.info-icon--btn { cursor: pointer; text-decoration: none; }
+.info-icon--btn:hover { transform: scale(1.12); background: rgba(255,255,255,0.08); }
 .info-icon--wa  { color: #25d366; border-color: rgba(37,211,102,0.3); }
 .info-icon--ig  { color: #e1306c; border-color: rgba(225,48,108,0.3); }
 .info-icon--mail { color: var(--brown-light); }
