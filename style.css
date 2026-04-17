@@ -46,15 +46,19 @@ img { max-width: 100%; display: block; }
   padding: 0 2rem;
 }
 .logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: var(--white);
-  letter-spacing: 0.02em;
-  transition: color 0.3s;
+  display: flex;
+  align-items: center;
 }
-.logo em { font-style: italic; font-weight: 300; }
-.nav.scrolled .logo { color: var(--warm-dark); }
+.logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.3s;
+}
+.logo-img--white { display: block; filter: brightness(0) invert(1); }
+.logo-img--dark  { display: none; }
+.nav.scrolled .logo-img--white { display: none; }
+.nav.scrolled .logo-img--dark  { display: block; }
 
 .nav-links {
   list-style: none;
@@ -335,6 +339,18 @@ img { max-width: 100%; display: block; }
   font-size: 0.85rem;
   color: var(--text-muted);
 }
+.card-tag {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.2rem 0.65rem;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.catalog-card--corp .card-info { border-top: 2px solid #1a1a1a; }
 
 /* ===== SOBRE ===== */
 .sobre {
