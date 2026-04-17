@@ -176,9 +176,17 @@ function lbMove(dir) {
 // ──────────────────────────────────────────────────
 function initNav() {
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
+  const hero = document.getElementById('home');
+
+  function updateNav() {
+    const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 0;
+    const onHero = window.scrollY < heroBottom - 80;
+    nav.classList.toggle('on-hero', onHero);
+    nav.classList.toggle('scrolled', !onHero);
+  }
+
+  updateNav();
+  window.addEventListener('scroll', updateNav);
 
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -186,12 +194,10 @@ function initNav() {
     mobileMenu.classList.toggle('open');
   });
 
-  // Fecha menu mobile ao clicar num link
   document.querySelectorAll('.mob-link').forEach(link => {
     link.addEventListener('click', () => mobileMenu.classList.remove('open'));
   });
 
-  // Active link on scroll
   const sections = ['home', 'catalogos', 'sobre', 'contato'];
   window.addEventListener('scroll', () => {
     let current = '';
