@@ -50,19 +50,24 @@ img { max-width: 100%; display: block; }
   align-items: center;
   flex-shrink: 0;
 }
-.logo-svg {
-  height: 42px;
+.logo-img {
+  height: 44px;
   width: auto;
-  color: #ffffff;
-  transition: color 0.35s;
+  max-width: 200px;
+  object-fit: contain;
+  transition: opacity 0.35s;
 }
-.nav.scrolled .logo-svg { color: #1a1209; }
-
-/* Logo: versão clara sobre hero escuro usa filter para inverter o logo preto */
-.logo-img--white { opacity: 1; filter: brightness(0) invert(1); }
+.logo-img--white { display: block; filter: brightness(0) invert(1); }
 .logo-img--dark  { display: none; filter: none; }
 .nav.scrolled .logo-img--white { display: none; }
 .nav.scrolled .logo-img--dark  { display: block; }
+
+.logo-footer {
+  height: 32px;
+  width: auto;
+  filter: brightness(0) invert(0.8) sepia(1) saturate(0.5);
+  opacity: 0.8;
+}
 
 .logo-svg--footer {
   height: 36px;
