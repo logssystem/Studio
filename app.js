@@ -53,6 +53,13 @@ const CONFIG = {
     { categoria: 'prewedd', url: 'https://picsum.photos/seed/pre2/600/600', titulo: 'Pôr do sol a dois', descricao: '' },
     { categoria: 'prewedd', url: 'https://picsum.photos/seed/pre3/600/600', titulo: 'Sessão urbana', descricao: '' },
     { categoria: 'prewedd', url: 'https://picsum.photos/seed/pre4/600/600', titulo: 'Entre flores', descricao: '' },
+    // Corporativo
+    { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp1/600/600', titulo: 'Evento empresarial', descricao: 'Congresso 2024' },
+    { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp2/600/600', titulo: 'Headshot executivo', descricao: '' },
+    { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp3/600/600', titulo: 'Fotografia de produto', descricao: '' },
+    { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp4/600/600', titulo: 'Equipe corporativa', descricao: '' },
+    { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp5/600/600', titulo: 'Lançamento de produto', descricao: '' },
+    { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp6/600/600', titulo: 'Workshop empresarial', descricao: '' },
   ],
 };
 
@@ -62,6 +69,7 @@ const CATALOG_META = {
   debutante:   { label: '15 Anos',        desc: 'Um sonho que merece ser registrado' },
   aniversario: { label: 'Aniversários',  desc: 'Celebrações inesquecíveis' },
   prewedd:     { label: 'Pré-Wedd',      desc: 'O romance antes do grande dia' },
+  corporativo: { label: 'Corporativo',   desc: 'Eventos, headshots e produtos profissionais' },
 };
 
 // ──────────────────────────────────────────────────
