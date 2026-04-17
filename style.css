@@ -48,15 +48,19 @@ img { max-width: 100%; display: block; }
 .logo {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 .logo-img {
-  height: 38px;
+  height: 44px;
   width: auto;
+  max-width: 180px;
   object-fit: contain;
-  transition: opacity 0.3s;
+  display: block;
+  transition: opacity 0.35s;
 }
-.logo-img--white { display: block; filter: brightness(0) invert(1); }
-.logo-img--dark  { display: none; }
+/* Logo: versão clara sobre hero escuro usa filter para inverter o logo preto */
+.logo-img--white { opacity: 1; filter: brightness(0) invert(1); }
+.logo-img--dark  { display: none; filter: none; }
 .nav.scrolled .logo-img--white { display: none; }
 .nav.scrolled .logo-img--dark  { display: block; }
 
@@ -171,31 +175,40 @@ img { max-width: 100%; display: block; }
   to { opacity: 1; transform: translateY(0); }
 }
 .hero-eyebrow {
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--brown-light);
-  margin-bottom: 1.25rem;
+  color: rgba(201,180,154,0.8);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
 }
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3.5rem, 9vw, 7rem);
   font-weight: 300;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.01em;
+  color: #fff;
 }
 .hero-title em {
+  display: block;
   font-style: italic;
   font-weight: 300;
+  font-size: clamp(3rem, 8vw, 6.2rem);
   color: var(--brown-light);
+  line-height: 1.15;
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.02em;
 }
 .hero-sub {
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 2.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 2.75rem;
   text-transform: uppercase;
+  font-weight: 300;
 }
 .btn-hero {
   display: inline-block;
