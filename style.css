@@ -29,7 +29,7 @@ img { max-width: 100%; display: block; }
   font-size: 0.95rem;
   letter-spacing: 0.25em;
   text-transform: lowercase;
-  color: rgba(255,255,255,0.9);
+  color: #1a1209;
   transition: color 0.3s;
 }
 .logo-fk {
@@ -38,12 +38,12 @@ img { max-width: 100%; display: block; }
   font-weight: 400;
   font-size: 1.6rem;
   letter-spacing: 0.02em;
-  color: #c9b49a;
+  color: #8a6347;
   transition: color 0.3s;
   line-height: 1;
 }
-.nav.scrolled .logo-studio { color: #1a1209; }
-.nav.scrolled .logo-fk { color: #8a6347; }
+.nav.on-hero .logo-studio { color: rgba(255,255,255,0.9); }
+.nav.on-hero .logo-fk { color: #c9b49a; }
 .logo--footer .logo-studio { color: rgba(255,255,255,0.35); }
 .logo--footer .logo-fk { color: #c9b49a; }
 
@@ -52,10 +52,17 @@ img { max-width: 100%; display: block; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
+  background: rgba(250,249,247,0.97);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.08);
   transition: background 0.35s, box-shadow 0.35s;
 }
+.nav.on-hero {
+  background: transparent;
+  box-shadow: none;
+}
 .nav.scrolled {
-  background: rgba(250,249,247,0.96);
+  background: rgba(250,249,247,0.97);
   backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 rgba(0,0,0,0.08);
 }
@@ -74,7 +81,7 @@ img { max-width: 100%; display: block; }
   font-weight: 300;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.8);
+  color: var(--muted);
   transition: color 0.25s;
   position: relative;
 }
@@ -83,19 +90,20 @@ img { max-width: 100%; display: block; }
   position: absolute;
   bottom: -4px; left: 0; right: 0;
   height: 1px;
-  background: var(--white);
+  background: var(--brown);
   transform: scaleX(0);
   transition: transform 0.3s;
 }
 .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
-.nav.scrolled .nav-link { color: var(--muted); }
-.nav.scrolled .nav-link::after { background: var(--brown); }
-.nav.scrolled .nav-link:hover,
-.nav.scrolled .nav-link.active { color: var(--dark); }
+.nav-link:hover, .nav-link.active { color: var(--dark); }
+.nav.on-hero .nav-link { color: rgba(255,255,255,0.8); }
+.nav.on-hero .nav-link::after { background: var(--white); }
+.nav.on-hero .nav-link:hover,
+.nav.on-hero .nav-link.active { color: var(--white); }
 
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: background 0.3s; }
-.nav.scrolled .hamburger span { background: var(--dark); }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--dark); transition: background 0.3s; }
+.nav.on-hero .hamburger span { background: var(--white); }
 
 .mobile-menu { display: none; flex-direction: column; background: rgba(250,249,247,0.98); backdrop-filter: blur(12px); padding: 1.5rem 2rem; border-top: 1px solid rgba(0,0,0,0.06); }
 .mobile-menu.open { display: flex; }
@@ -282,7 +290,10 @@ img { max-width: 100%; display: block; }
 .contato .section-header.light .section-desc { color: rgba(255,255,255,0.5); }
 .contato-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
 .info-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.75rem; }
-.info-icon { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brown-light); flex-shrink: 0; }
+.info-icon { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brown-light); flex-shrink: 0; transition: background 0.3s; }
+.info-icon--wa  { color: #25d366; border-color: rgba(37,211,102,0.3); }
+.info-icon--ig  { color: #e1306c; border-color: rgba(225,48,108,0.3); }
+.info-icon--mail { color: var(--brown-light); }
 .info-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.25rem; }
 .info-val { color: rgba(255,255,255,0.8); font-size: 0.95rem; transition: color 0.25s; }
 .info-val:hover { color: var(--brown-light); }
