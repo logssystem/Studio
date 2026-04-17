@@ -231,7 +231,7 @@ function initForm() {
     const msg     = document.getElementById('mensagem').value.trim();
 
     const texto = `Olá! Me chamo *${nome}*.\nTelefone: ${tel || 'não informado'}\nEvento: ${evento || 'não informado'}\nMensagem: ${msg}`;
-    const url = `https://wa.me/5511999999999?text=${encodeURIComponent(texto)}`;
+    const url = `https://wa.me/5519991515466?text=${encodeURIComponent(texto)}`;
     window.open(url, '_blank');
 
     document.getElementById('formSuccess').classList.add('show');
