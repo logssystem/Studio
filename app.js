@@ -222,21 +222,39 @@ function initNav() {
 // FORMULÁRIO DE CONTATO (envia via WhatsApp ou mailto)
 // ──────────────────────────────────────────────────
 function initForm() {
+  emailjs.init('EUrmzxrZQUwW8f1yv');
+
   const form = document.getElementById('contactForm');
+  const btn = form.querySelector('.btn-submit');
+
   form.addEventListener('submit', e => {
     e.preventDefault();
-    const nome    = document.getElementById('nome').value.trim();
-    const tel     = document.getElementById('tel').value.trim();
-    const evento  = document.getElementById('evento').value;
-    const msg     = document.getElementById('mensagem').value.trim();
 
-    const texto = `Olá! Me chamo *${nome}*.\nTelefone: ${tel || 'não informado'}\nEvento: ${evento || 'não informado'}\nMensagem: ${msg}`;
-    const url = `https://wa.me/5519991515466?text=${encodeURIComponent(texto)}`;
-    window.open(url, '_blank');
+    const nome     = document.getElementById('nome').value.trim();
+    const telefone = document.getElementById('tel').value.trim();
+    const evento   = document.getElementById('evento').value;
+    const mensagem = document.getElementById('mensagem').value.trim();
 
-    document.getElementById('formSuccess').classList.add('show');
-    setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 5000);
-    form.reset();
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    emailjs.send('service_8k8xjye', 'template_1p3ifeb', {
+      nome,
+      telefone,
+      evento,
+      mensagem,
+    }).then(() => {
+      document.getElementById('formSuccess').classList.add('show');
+      setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 5000);
+      form.reset();
+      btn.textContent = 'Enviar mensagem';
+      btn.disabled = false;
+    }).catch((err) => {
+      console.error('Erro ao enviar:', err);
+      alert('Erro ao enviar. Tente pelo WhatsApp!');
+      btn.textContent = 'Enviar mensagem';
+      btn.disabled = false;
+    });
   });
 }
 
