@@ -18,27 +18,34 @@ img { max-width: 100%; display: block; }
 /* ── LOGO ── */
 .logo {
   display: flex;
-  align-items: center;
-  flex-shrink: 0;
+  align-items: baseline;
+  gap: 0.15em;
   text-decoration: none;
+  flex-shrink: 0;
 }
-.logo-img {
-  height: 40px;
-  width: auto;
-  max-width: 180px;
-  object-fit: contain;
-  transition: filter 0.35s, opacity 0.35s;
-  /* logo é escuro — inverte para branco no hero */
-  filter: invert(1) brightness(2);
+.logo-studio {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200;
+  font-size: 0.95rem;
+  letter-spacing: 0.25em;
+  text-transform: lowercase;
+  color: #1a1209;
+  transition: color 0.3s;
 }
-.nav.scrolled .logo-img {
-  /* logo escuro normal quando nav está clara */
-  filter: invert(0) brightness(1);
+.logo-fk {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.6rem;
+  letter-spacing: 0.02em;
+  color: #8a6347;
+  transition: color 0.3s;
+  line-height: 1;
 }
-.logo--footer .logo-img {
-  height: 32px;
-  filter: invert(1) brightness(1.5) opacity(0.6);
-}
+.nav.on-hero .logo-studio { color: rgba(255,255,255,0.9); }
+.nav.on-hero .logo-fk { color: #c9b49a; }
+.logo--footer .logo-studio { color: rgba(255,255,255,0.35); }
+.logo--footer .logo-fk { color: #c9b49a; }
 
 /* ── NAV ── */
 .nav {
