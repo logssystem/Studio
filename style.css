@@ -11,17 +11,17 @@ a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
 
 /* ===== VARIABLES ===== */
-:root {
-  --cream: #faf9f7;
-  --warm-dark: #1a1209;
-  --brown: #8a6347;
-  --brown-light: #c9b49a;
-  --brown-pale: #f0e8de;
-  --text: #1a1a1a;
-  --text-muted: #6b6560;
-  --accent: #8a6347;
-  --white: #ffffff;
-  --nav-h: 70px;
+: root {
+  cream: #faf9f7;
+  warm-dark: #1a1209;
+  brown: #8a6347;
+  brown-light: #c9b49a;
+  brown-pale: #f0e8de;
+  text: #1a1a1a;
+  text-muted: #6b6560;
+  accent: #8a6347;
+  white: #ffffff;
+  nav-h: 70px;
 }
 
 /* ===== NAVIGATION ===== */
