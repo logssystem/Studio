@@ -178,6 +178,13 @@ function initNav() {
   const nav = document.getElementById('nav');
   const hero = document.getElementById('home');
 
+  // Garante fixed via JS independente do CSS
+  nav.style.position = 'fixed';
+  nav.style.top = '0';
+  nav.style.left = '0';
+  nav.style.right = '0';
+  nav.style.zIndex = '1000';
+
   function updateNav() {
     const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 0;
     const onHero = window.scrollY < heroBottom - 80;
