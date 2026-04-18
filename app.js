@@ -1,59 +1,31 @@
 /* ====================================================
    StudioLens — app.js
-   Integração com Google Sheets (planilha publicada)
    ==================================================== */
 
-// ──────────────────────────────────────────────────
-// CONFIGURAÇÃO — edite aqui com seus dados
-// ──────────────────────────────────────────────────
 const CONFIG = {
-  /*
-    Para conectar sua planilha do Google Sheets:
-    1. Abra a planilha no Google Drive
-    2. Vá em Arquivo → Compartilhar → Publicar na web
-    3. Selecione a aba e escolha "CSV"
-    4. Copie a URL gerada e cole em SHEET_CSV_URL abaixo
-
-    A planilha deve ter as colunas:
-    categoria | url_foto | titulo | descricao
-
-    Exemplo de linha:
-    casamento | https://i.imgur.com/xyzabc.jpg | Casamento Silva | Igreja da Consolação
-  */
   SHEET_CSV_URL: 'SUA_PLANILHA_CSV_URL_AQUI',
-
-  /*
-    Dados de demonstração (usados enquanto a planilha não é configurada).
-    Cada objeto: { categoria, url, titulo, descricao }
-  */
   DEMO_PHOTOS: [
-    // Casamentos
     { categoria: 'casamento', url: 'https://picsum.photos/seed/wed1/600/600', titulo: 'Casamento ao pôr do sol', descricao: 'Igreja histórica, 2024' },
     { categoria: 'casamento', url: 'https://picsum.photos/seed/wed2/600/600', titulo: 'Troca de alianças', descricao: 'Jardim botânico' },
     { categoria: 'casamento', url: 'https://picsum.photos/seed/wed3/600/600', titulo: 'Primeira dança', descricao: 'Fazenda Santa Luzia' },
     { categoria: 'casamento', url: 'https://picsum.photos/seed/wed4/600/600', titulo: 'Buquê de noiva', descricao: 'Detalhe floral' },
     { categoria: 'casamento', url: 'https://picsum.photos/seed/wed5/600/600', titulo: 'Cerimônia ao ar livre', descricao: '' },
     { categoria: 'casamento', url: 'https://picsum.photos/seed/wed6/600/600', titulo: 'Festa na recepção', descricao: '' },
-    // Festas infantis
     { categoria: 'infantil', url: 'https://picsum.photos/seed/kid1/600/600', titulo: 'Parabéns pequenina', descricao: '1 aninho' },
     { categoria: 'infantil', url: 'https://picsum.photos/seed/kid2/600/600', titulo: 'Hora do bolo', descricao: '' },
     { categoria: 'infantil', url: 'https://picsum.photos/seed/kid3/600/600', titulo: 'Decoração temática', descricao: '' },
     { categoria: 'infantil', url: 'https://picsum.photos/seed/kid4/600/600', titulo: 'Brincadeiras', descricao: '' },
-    // 15 anos
     { categoria: 'debutante', url: 'https://picsum.photos/seed/deb1/600/600', titulo: 'Valsa dos sonhos', descricao: '' },
     { categoria: 'debutante', url: 'https://picsum.photos/seed/deb2/600/600', titulo: 'Sessão ao ar livre', descricao: '' },
     { categoria: 'debutante', url: 'https://picsum.photos/seed/deb3/600/600', titulo: 'Detalhes do vestido', descricao: '' },
     { categoria: 'debutante', url: 'https://picsum.photos/seed/deb4/600/600', titulo: 'Coroação', descricao: '' },
-    // Aniversários
     { categoria: 'aniversario', url: 'https://picsum.photos/seed/ani1/600/600', titulo: '50 anos com estilo', descricao: '' },
     { categoria: 'aniversario', url: 'https://picsum.photos/seed/ani2/600/600', titulo: 'Família reunida', descricao: '' },
     { categoria: 'aniversario', url: 'https://picsum.photos/seed/ani3/600/600', titulo: 'Bolo comemorativo', descricao: '' },
-    // Pré-Wedd
     { categoria: 'prewedd', url: 'https://picsum.photos/seed/pre1/600/600', titulo: 'Amor no campo', descricao: '' },
     { categoria: 'prewedd', url: 'https://picsum.photos/seed/pre2/600/600', titulo: 'Pôr do sol a dois', descricao: '' },
     { categoria: 'prewedd', url: 'https://picsum.photos/seed/pre3/600/600', titulo: 'Sessão urbana', descricao: '' },
     { categoria: 'prewedd', url: 'https://picsum.photos/seed/pre4/600/600', titulo: 'Entre flores', descricao: '' },
-    // Corporativo
     { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp1/600/600', titulo: 'Evento empresarial', descricao: 'Congresso 2024' },
     { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp2/600/600', titulo: 'Headshot executivo', descricao: '' },
     { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp3/600/600', titulo: 'Fotografia de produto', descricao: '' },
@@ -72,16 +44,11 @@ const CATALOG_META = {
   corporativo: { label: 'Corporativo',   desc: 'Eventos, headshots e produtos profissionais' },
 };
 
-// ──────────────────────────────────────────────────
-// ESTADO GLOBAL
-// ──────────────────────────────────────────────────
 let allPhotos = [];
 let lightboxPhotos = [];
 let lbIndex = 0;
 
-// ──────────────────────────────────────────────────
-// CARREGAR FOTOS
-// ──────────────────────────────────────────────────
+// ── CARREGAR FOTOS ──
 async function loadPhotos() {
   if (CONFIG.SHEET_CSV_URL === 'SUA_PLANILHA_CSV_URL_AQUI') {
     allPhotos = CONFIG.DEMO_PHOTOS;
@@ -90,7 +57,7 @@ async function loadPhotos() {
   try {
     const res = await fetch(CONFIG.SHEET_CSV_URL);
     const text = await res.text();
-    const rows = text.trim().split('\n').slice(1); // pula cabeçalho
+    const rows = text.trim().split('\n').slice(1);
     allPhotos = rows.map(row => {
       const cols = row.split(',');
       return {
@@ -106,9 +73,7 @@ async function loadPhotos() {
   }
 }
 
-// ──────────────────────────────────────────────────
-// ABRIR CATÁLOGO
-// ──────────────────────────────────────────────────
+// ── CATÁLOGO ──
 async function openCatalog(category) {
   const meta = CATALOG_META[category] || { label: category, desc: '' };
   document.getElementById('modalTitle').textContent = meta.label;
@@ -140,18 +105,13 @@ async function openCatalog(category) {
   });
 }
 
-// ──────────────────────────────────────────────────
-// FECHAR MODAL
-// ──────────────────────────────────────────────────
 function closeModal() {
   document.getElementById('modalBackdrop').classList.remove('open');
   document.body.style.overflow = '';
   closeLightbox();
 }
 
-// ──────────────────────────────────────────────────
-// LIGHTBOX
-// ──────────────────────────────────────────────────
+// ── LIGHTBOX ──
 function openLightbox(idx) {
   lbIndex = idx;
   updateLightbox();
@@ -171,40 +131,36 @@ function lbMove(dir) {
   updateLightbox();
 }
 
-// ──────────────────────────────────────────────────
-// NAVEGAÇÃO
-// ──────────────────────────────────────────────────
+// ── NAVEGAÇÃO FIXA ──
 function initNav() {
   const nav = document.getElementById('nav');
   const hero = document.getElementById('home');
 
-  // Garante fixed via JS independente do CSS
-  nav.style.position = 'fixed';
-  nav.style.top = '0';
-  nav.style.left = '0';
-  nav.style.right = '0';
-  nav.style.zIndex = '1000';
-
   function updateNav() {
+    // hero termina em: offsetTop + height
     const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 0;
-    const onHero = window.scrollY < heroBottom - 80;
-    nav.classList.toggle('on-hero', onHero);
-    nav.classList.toggle('scrolled', !onHero);
+    // considera margem de 80px antes do fim do hero para a transição
+    const pastHero = window.scrollY > heroBottom - 80;
+    nav.classList.toggle('scrolled', pastHero);
   }
 
+  // Roda uma vez na carga para estado inicial
   updateNav();
-  window.addEventListener('scroll', updateNav);
 
+  // Atualiza ao rolar
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  // Hamburger
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('open');
   });
-
   document.querySelectorAll('.mob-link').forEach(link => {
     link.addEventListener('click', () => mobileMenu.classList.remove('open'));
   });
 
+  // Link ativo por seção
   const sections = ['home', 'catalogos', 'sobre', 'contato'];
   window.addEventListener('scroll', () => {
     let current = '';
@@ -215,12 +171,10 @@ function initNav() {
     document.querySelectorAll('.nav-link').forEach(link => {
       link.classList.toggle('active', link.dataset.section === current);
     });
-  });
+  }, { passive: true });
 }
 
-// ──────────────────────────────────────────────────
-// FORMULÁRIO DE CONTATO (envia via WhatsApp ou mailto)
-// ──────────────────────────────────────────────────
+// ── FORMULÁRIO ──
 function initForm() {
   emailjs.init('EUrmzxrZQUwW8f1yv');
 
@@ -229,7 +183,6 @@ function initForm() {
 
   form.addEventListener('submit', e => {
     e.preventDefault();
-
     const nome     = document.getElementById('nome').value.trim();
     const telefone = document.getElementById('tel').value.trim();
     const evento   = document.getElementById('evento').value;
@@ -238,29 +191,24 @@ function initForm() {
     btn.textContent = 'Enviando...';
     btn.disabled = true;
 
-    emailjs.send('service_8k8xjye', 'template_1p3ifeb', {
-      nome,
-      telefone,
-      evento,
-      mensagem,
-    }).then(() => {
-      document.getElementById('formSuccess').classList.add('show');
-      setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 5000);
-      form.reset();
-      btn.textContent = 'Enviar mensagem';
-      btn.disabled = false;
-    }).catch((err) => {
-      console.error('Erro ao enviar:', err);
-      alert('Erro ao enviar. Tente pelo WhatsApp!');
-      btn.textContent = 'Enviar mensagem';
-      btn.disabled = false;
-    });
+    emailjs.send('service_8k8xjye', 'template_1p3ifeb', { nome, telefone, evento, mensagem })
+      .then(() => {
+        document.getElementById('formSuccess').classList.add('show');
+        setTimeout(() => document.getElementById('formSuccess').classList.remove('show'), 5000);
+        form.reset();
+        btn.textContent = 'Enviar mensagem';
+        btn.disabled = false;
+      })
+      .catch(err => {
+        console.error('Erro ao enviar:', err);
+        alert('Erro ao enviar. Tente pelo WhatsApp!');
+        btn.textContent = 'Enviar mensagem';
+        btn.disabled = false;
+      });
   });
 }
 
-// ──────────────────────────────────────────────────
-// EVENTOS DO MODAL / LIGHTBOX
-// ──────────────────────────────────────────────────
+// ── EVENTOS MODAL / LIGHTBOX ──
 function initModalEvents() {
   document.getElementById('modalClose').addEventListener('click', closeModal);
   document.getElementById('modalBackdrop').addEventListener('click', e => {
@@ -280,15 +228,12 @@ function initModalEvents() {
   });
 }
 
-// ──────────────────────────────────────────────────
-// INIT
-// ──────────────────────────────────────────────────
+// ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initForm();
   initModalEvents();
-  loadPhotos(); // pré-carrega em background
+  loadPhotos();
 });
 
-// Exporta para uso inline nos botões HTML
 window.openCatalog = openCatalog;
