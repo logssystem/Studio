@@ -382,7 +382,6 @@ function initModalEvents() {
 ══════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', async () => {
   initLoader();
-  initCursor();
   initProgressBar();
   initWaFloat();
   initNav();
