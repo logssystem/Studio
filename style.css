@@ -446,51 +446,69 @@ img { max-width: 100%; display: block; }
 }
 .catalog-card--corp .card-info { border-top: 2px solid #1a1a1a; }
 
-/* ── DEPOIMENTOS (novo bloco) ── */
-.depoimentos {
-  padding: 5rem 0;
-  background: #2a1f14;
+/* ── FAIXA DE FOTOS DESLIZANTE ── */
+.photo-strip {
+  background: #1a1209;
   overflow: hidden;
+  padding: 0;
+  position: relative;
 }
-.dep-track {
+.strip-label {
+  text-align: center;
+  padding: 2.5rem 0 1.5rem;
+}
+.strip-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(201,180,154,0.5);
+}
+.strip-track {
   display: flex;
-  gap: 2rem;
-  animation: marquee 28s linear infinite;
+  gap: 0.75rem;
   width: max-content;
+  animation: stripMove 40s linear infinite;
+  padding-bottom: 2.5rem;
 }
-.dep-track:hover { animation-play-state: paused; }
-@keyframes marquee {
+.strip-track:hover { animation-play-state: paused; }
+@keyframes stripMove {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-.dep-item {
-  width: 320px;
+.strip-photo {
+  width: 240px;
+  height: 180px;
   flex-shrink: 0;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(201,180,154,0.15);
-  border-radius: 3px;
-  padding: 1.75rem 2rem;
+  overflow: hidden;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
 }
-.dep-stars {
-  color: var(--brown-light);
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  margin-bottom: 0.75rem;
+.strip-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.5s ease;
+  filter: brightness(0.85) saturate(0.9);
 }
-.dep-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
-  font-style: italic;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.65;
-  margin-bottom: 1rem;
+.strip-photo:hover img {
+  transform: scale(1.06);
+  filter: brightness(1) saturate(1.1);
 }
-.dep-author {
-  font-size: 0.72rem;
+.strip-photo-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(26,18,9,0.8), transparent);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--brown-light);
+  padding: 1rem 0.75rem 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
+.strip-photo:hover .strip-photo-label { opacity: 1; }
 
 /* ── SOBRE ── */
 .sobre {
