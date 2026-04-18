@@ -229,11 +229,34 @@ function initModalEvents() {
 }
 
 // ── INIT ──
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   initNav();
   initForm();
   initModalEvents();
-  loadPhotos();
+  await loadPhotos();
+  buildPhotoStrip();
 });
 
 window.openCatalog = openCatalog;
+
+// ── FAIXA DE FOTOS ──
+function buildPhotoStrip() {
+  const track = document.getElementById('stripTrack');
+  if (!track || allPhotos.length === 0) return;
+
+  const shuffled = [...allPhotos].sort(() => Math.random() - 0.5).slice(0, 16);
+  const photos = [...shuffled, ...shuffled]; // duplica para loop infinito
+
+  track.innerHTML = '';
+  photos.forEach(photo => {
+    const div = document.createElement('div');
+    div.className = 'strip-photo';
+    const meta = CATALOG_META[photo.categoria] || { label: photo.categoria };
+    div.innerHTML = `
+      <img src="${photo.url}" alt="${photo.titulo || ''}" loading="lazy" />
+      <span class="strip-photo-label">${meta.label}</span>
+    `;
+    div.addEventListener('click', () => openCatalog(photo.categoria));
+    track.appendChild(div);
+  });
+}
