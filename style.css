@@ -92,10 +92,6 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
-  body { cursor: auto; }
-  * { cursor: auto !important; }
-}
-
 /* ══════════════════════════════════════
    WHATSAPP FLUTUANTE
 ══════════════════════════════════════ */
@@ -113,12 +109,16 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   z-index: 800;
   box-shadow: 0 4px 20px rgba(37,211,102,0.35);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
   opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
   transform: translateY(20px) scale(0.8);
 }
 .wa-float.visible {
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
   transform: translateY(0) scale(1);
 }
 .wa-float:hover {
