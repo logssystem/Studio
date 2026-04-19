@@ -125,11 +125,6 @@ img { max-width: 100%; display: block; }
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 28px rgba(37,211,102,0.45);
 }
-/* Pulso */
-  70%  { transform: scale(1.5); opacity: 0; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-.wa-float:hover 
 /* ══════════════════════════════════════
    ANIMAÇÕES DE ENTRADA (SCROLL REVEAL)
 ══════════════════════════════════════ */
