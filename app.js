@@ -15,7 +15,7 @@ const CONFIG = {
     3. Vá em Arquivo → Compartilhar → Publicar na web → CSV
     4. Cole a URL gerada abaixo
   */
-  SHEET_CSV_URL: 'SUA_PLANILHA_CSV_URL_AQUI',
+  SHEET_CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTfPLJw2FqpfsuMfTTGQpinVwcbCZ_1jx9Ju7_1CflC0_JkWW2ASWeGms0i3vCDch2NtvsJX5RrrOlF/pub?gid=3067502&single=true&output=csv',
 
   /* ── Instagram: cole seu token de acesso aqui ──
      Se deixar vazio, a seção Instagram não aparece.
