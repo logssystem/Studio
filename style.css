@@ -468,3 +468,6 @@ img { max-width: 100%; display: block; }
   .hero-title em { font-size: 2rem; }
   .mob-link { font-size: 1.8rem; }
 }
+
+.sobre-img-real { aspect-ratio: 3/4; border-radius: 2px; overflow: hidden; }
+.sobre-img-real img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
