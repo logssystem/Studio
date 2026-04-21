@@ -475,14 +475,14 @@ function initFaq() {
    FORMULÁRIO
 ══════════════════════════════════════ */
 function initForm() {
-  emailjs.init('EUrmzxrZQUwW8f1yv');
+  emailjs.init('DpAdYBewfTgjb9ASI');
   const form = document.getElementById('contactForm');
   const btn  = form.querySelector('.btn-submit');
   form.addEventListener('submit', e => {
     e.preventDefault();
     btn.textContent = 'Enviando...';
     btn.disabled = true;
-    emailjs.send('service_8k8xjye', 'template_1p3ifeb', {
+    emailjs.send('service_9abzeza', 'template_06lnpra', {
       nome:     document.getElementById('nome').value.trim(),
       telefone: document.getElementById('tel').value.trim(),
       evento:   document.getElementById('evento').value,
