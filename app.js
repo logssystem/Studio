@@ -1,25 +1,9 @@
 /* ====================================================
    Studio FK — app.js
-   ====================================================
-   CONFIGURAÇÃO DO CLIENTE:
-   Para atualizar as fotos, o cliente acessa a planilha Google Sheets
-   indicada em CONFIG.SHEET_CSV_URL e adiciona/remove linhas.
-   Colunas: categoria | url | titulo | descricao
    ==================================================== */
 
 const CONFIG = {
-  /*
-    ── PLANILHA DE FOTOS ──
-    1. Acesse: https://docs.google.com/spreadsheets/
-    2. Crie uma planilha com colunas: categoria | url | titulo | descricao
-    3. Vá em Arquivo → Compartilhar → Publicar na web → CSV
-    4. Cole a URL gerada abaixo
-  */
   SHEET_CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTfPLJw2FqpfsuMfTTGQpinVwcbCZ_1jx9Ju7_1CflC0_JkWW2ASWeGms0i3vCDch2NtvsJX5RrrOlF/pub?gid=3067502&single=true&output=csv',
-
-  /* ── Instagram: cole seu token de acesso aqui ──
-     Se deixar vazio, a seção Instagram não aparece.
-  */
   INSTAGRAM_TOKEN: '',
   INSTAGRAM_USER_ID: '',
 
@@ -53,54 +37,54 @@ const CONFIG = {
     { categoria: 'casamento', url: 'https://lh3.googleusercontent.com/pw/AP1GczP2IP9s3Exc4rmcLPKLl7xfvoZUku_l_iiL1LJpteOXRXpyIL6Du9c4Lfh2tybkyb7BE8ZJZkNXzlCYD8Xiru4sm5VHPNXLUdCwQkWi9Rn-sxSdems=w1200', titulo: 'Casamento A&J', descricao: '' },
     { categoria: 'casamento', url: 'https://lh3.googleusercontent.com/pw/AP1GczMZ3wv72gjSj5ovlC7c-mQXEt-jsZKCj9OHreEt69GMgTGXuvAiVnqg-Yab_ZbGhZqqBRyYkuUyrFLwxV8h3WMOKdgBLDhUNrPHKS9BapD-IgtLPv0=w1200', titulo: 'Casamento A&J', descricao: '' },
 
-    // ── PRÉ-WEDD ──
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1ZGD3HbbyBWT0XaWOz3eGfhTKsvEI3xWa', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1GBkQYlARUz9XWLd6dIlhVH3-wkEwC4Sr', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1m0rjBRJToPyFS_ubHwwZ5-YLy78LweIq', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1cB1k4QgtedFjq5UEr-4hdHeNk65JUoXm', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1oZQ0gPgesgyZsYpjiLkX9ztgXxnDYHAY', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1HG_DZDlCFCnGRdOC-VXSei89gUANdaNY', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1zBCJ4HwJsxvOI7j5ZY9HZEf-AciQ6HV1', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1zZ6_xSRS78t-F0-Zk-miVPuQbunavEa2', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1VA9LtgaAmn2ewqvarPIqUlLa-lKFXSgV', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=12FJYamsqShY2CQ1IWld2ZWy0SR-8w0d5', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=17flIMOX1-7r4RtScuwYvEhLtclIgvIT3', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1NV_yuyGeHZpr_sLn6BC1n1c3w8jFfq7r', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1qnGuEWdcohGyZoxi_ewE4m9PDDklmnxi', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1uJpWoo46u0QgnorqQvt4KteUHWeLDB25', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1Hz2xB3SP_wve89wYMno1b4IJqHlOi88m', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1P5c8Dn2CaoiYDxIbpfxvX3Z1DUSNNjon', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1ieXoZX9sE5_iq9-vbK2oE0uQZS4AEw1X', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=14JJkPdZKOBLVYqHTcGjQy-fXsP8KGeiy', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1FtlT6SxfbrZsbTJelzfu7zbVa6eC5uJl', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1_SYB_A8rTVCpnYo0ss8O2Fiv_GVdlp33', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1ZARhy9DvRmT3Qm-bmDtgmVaIWXv2UXN0', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1AApEnZIkqqkMm3zTCm3b1lrnc8Ok0z56', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1KI8pDqC90IK0W4mrNhBDkw-IsumBtmQK', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1SzR13t2suBSukF6wEGw5UtRH54W0P4xF', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1bUJkSK5-j4cwWZ8P1XXXgh97njJgcxWU', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1YFK_GP1qoqR9akS6FueQmzJwLLgEJqoz', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1Rxokg8n4E4fu0ZBcLuekbOPxvfb8LO_9', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1RkZYY4RpgjVf2K9g4TMSn5Wlfs02eRwS', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1zZxfKhz5gMivM017uxKnxAAYkfXJAG16', titulo: 'Pré-Wedd A&J', descricao: '' },
-    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1dpLjEVEIXcOn4959ii-4b7SdOUe6cQq4', titulo: 'Pré-Wedd A&J', descricao: '' },
+    // ── AMBIENTES (antes Pré-Wedd) ──
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1ZGD3HbbyBWT0XaWOz3eGfhTKsvEI3xWa', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1GBkQYlARUz9XWLd6dIlhVH3-wkEwC4Sr', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1m0rjBRJToPyFS_ubHwwZ5-YLy78LweIq', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1cB1k4QgtedFjq5UEr-4hdHeNk65JUoXm', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1oZQ0gPgesgyZsYpjiLkX9ztgXxnDYHAY', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1HG_DZDlCFCnGRdOC-VXSei89gUANdaNY', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1zBCJ4HwJsxvOI7j5ZY9HZEf-AciQ6HV1', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1zZ6_xSRS78t-F0-Zk-miVPuQbunavEa2', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1VA9LtgaAmn2ewqvarPIqUlLa-lKFXSgV', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=12FJYamsqShY2CQ1IWld2ZWy0SR-8w0d5', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=17flIMOX1-7r4RtScuwYvEhLtclIgvIT3', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1NV_yuyGeHZpr_sLn6BC1n1c3w8jFfq7r', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1qnGuEWdcohGyZoxi_ewE4m9PDDklmnxi', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1uJpWoo46u0QgnorqQvt4KteUHWeLDB25', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1Hz2xB3SP_wve89wYMno1b4IJqHlOi88m', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1P5c8Dn2CaoiYDxIbpfxvX3Z1DUSNNjon', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1ieXoZX9sE5_iq9-vbK2oE0uQZS4AEw1X', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=14JJkPdZKOBLVYqHTcGjQy-fXsP8KGeiy', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1FtlT6SxfbrZsbTJelzfu7zbVa6eC5uJl', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1_SYB_A8rTVCpnYo0ss8O2Fiv_GVdlp33', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1ZARhy9DvRmT3Qm-bmDtgmVaIWXv2UXN0', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1AApEnZIkqqkMm3zTCm3b1lrnc8Ok0z56', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1KI8pDqC90IK0W4mrNhBDkw-IsumBtmQK', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1SzR13t2suBSukF6wEGw5UtRH54W0P4xF', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1bUJkSK5-j4cwWZ8P1XXXgh97njJgcxWU', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1YFK_GP1qoqR9akS6FueQmzJwLLgEJqoz', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1Rxokg8n4E4fu0ZBcLuekbOPxvfb8LO_9', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1RkZYY4RpgjVf2K9g4TMSn5Wlfs02eRwS', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1zZxfKhz5gMivM017uxKnxAAYkfXJAG16', titulo: 'Ambientes', descricao: '' },
+    { categoria: 'prewedd', url: 'https://drive.google.com/uc?export=view&id=1dpLjEVEIXcOn4959ii-4b7SdOUe6cQq4', titulo: 'Ambientes', descricao: '' },
 
-    // ── OUTROS (placeholder — cliente substitui via Sheets) ──
-    { categoria: 'infantil',    url: 'https://picsum.photos/seed/kid1/600/600',  titulo: 'Festa Infantil', descricao: '' },
-    { categoria: 'infantil',    url: 'https://picsum.photos/seed/kid2/600/600',  titulo: 'Festa Infantil', descricao: '' },
-    { categoria: 'infantil',    url: 'https://picsum.photos/seed/kid3/600/600',  titulo: 'Festa Infantil', descricao: '' },
-    { categoria: 'debutante',   url: 'https://picsum.photos/seed/deb1/600/600',  titulo: '15 Anos',        descricao: '' },
-    { categoria: 'debutante',   url: 'https://picsum.photos/seed/deb2/600/600',  titulo: '15 Anos',        descricao: '' },
-    { categoria: 'aniversario', url: 'https://picsum.photos/seed/ani1/600/600',  titulo: 'Aniversário',    descricao: '' },
-    { categoria: 'aniversario', url: 'https://picsum.photos/seed/ani2/600/600',  titulo: 'Aniversário',    descricao: '' },
-    { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp1/600/600', titulo: 'Corporativo',    descricao: '' },
-    { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp2/600/600', titulo: 'Corporativo',    descricao: '' },
-    { categoria: 'batizado',    url: 'https://picsum.photos/seed/bat1/600/600',  titulo: 'Batizado',       descricao: '' },
-    { categoria: 'batizado',    url: 'https://picsum.photos/seed/bat2/600/600',  titulo: 'Batizado',       descricao: '' },
-    { categoria: 'batizado',    url: 'https://picsum.photos/seed/bat3/600/600',  titulo: 'Batizado',       descricao: '' },
-    { categoria: 'ensaio',      url: 'https://picsum.photos/seed/ens1/600/600',  titulo: 'Ensaio de Casal', descricao: '' },
-    { categoria: 'ensaio',      url: 'https://picsum.photos/seed/ens2/600/600',  titulo: 'Ensaio de Casal', descricao: '' },
-    { categoria: 'ensaio',      url: 'https://picsum.photos/seed/ens3/600/600',  titulo: 'Ensaio de Casal', descricao: '' },
+    // ── OUTROS ──
+    { categoria: 'infantil',    url: 'https://picsum.photos/seed/kid1/600/600',  titulo: 'Festa Infantil',  descricao: '' },
+    { categoria: 'infantil',    url: 'https://picsum.photos/seed/kid2/600/600',  titulo: 'Festa Infantil',  descricao: '' },
+    { categoria: 'infantil',    url: 'https://picsum.photos/seed/kid3/600/600',  titulo: 'Festa Infantil',  descricao: '' },
+    { categoria: 'debutante',   url: 'https://picsum.photos/seed/deb1/600/600',  titulo: 'Festa 15 Anos',   descricao: '' },
+    { categoria: 'debutante',   url: 'https://picsum.photos/seed/deb2/600/600',  titulo: 'Festa 15 Anos',   descricao: '' },
+    { categoria: 'aniversario', url: 'https://picsum.photos/seed/ani1/600/600',  titulo: 'Festa Adulta',    descricao: '' },
+    { categoria: 'aniversario', url: 'https://picsum.photos/seed/ani2/600/600',  titulo: 'Festa Adulta',    descricao: '' },
+    { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp1/600/600', titulo: 'Corporativo',     descricao: '' },
+    { categoria: 'corporativo', url: 'https://picsum.photos/seed/corp2/600/600', titulo: 'Corporativo',     descricao: '' },
+    { categoria: 'batizado',    url: 'https://picsum.photos/seed/bat1/600/600',  titulo: 'Batizado',        descricao: '' },
+    { categoria: 'batizado',    url: 'https://picsum.photos/seed/bat2/600/600',  titulo: 'Batizado',        descricao: '' },
+    { categoria: 'batizado',    url: 'https://picsum.photos/seed/bat3/600/600',  titulo: 'Batizado',        descricao: '' },
+    { categoria: 'ensaio',      url: 'https://picsum.photos/seed/ens1/600/600',  titulo: 'Ensaios Externos', descricao: '' },
+    { categoria: 'ensaio',      url: 'https://picsum.photos/seed/ens2/600/600',  titulo: 'Ensaios Externos', descricao: '' },
+    { categoria: 'ensaio',      url: 'https://picsum.photos/seed/ens3/600/600',  titulo: 'Ensaios Externos', descricao: '' },
     { categoria: 'banda',       url: 'https://picsum.photos/seed/ban1/600/600',  titulo: 'Show & Banda',    descricao: '' },
     { categoria: 'banda',       url: 'https://picsum.photos/seed/ban2/600/600',  titulo: 'Show & Banda',    descricao: '' },
     { categoria: 'banda',       url: 'https://picsum.photos/seed/ban3/600/600',  titulo: 'Show & Banda',    descricao: '' },
@@ -108,15 +92,15 @@ const CONFIG = {
 };
 
 const CATALOG_META = {
-  casamento:   { label: 'Casamentos',      desc: 'Histórias de amor eternizadas' },
-  infantil:    { label: 'Festa Infantil',  desc: 'A magia da infância em cada clique' },
-  debutante:   { label: '15 Anos',         desc: 'Um sonho que merece ser registrado' },
-  aniversario: { label: 'Aniversários',    desc: 'Celebrações inesquecíveis' },
-  prewedd:     { label: 'Pré-Wedd',        desc: 'O romance antes do grande dia' },
-  corporativo: { label: 'Corporativo',     desc: 'Eventos, headshots e produtos profissionais' },
-  batizado:    { label: 'Batizados',        desc: 'Momentos sagrados para guardar para sempre' },
-  ensaio:      { label: 'Ensaio de Casal', desc: 'Cumplicidade e amor em cada quadro' },
-  banda:       { label: 'Shows & Bandas',  desc: 'A energia do palco eternizada' },
+  casamento:   { label: 'Casamentos',        desc: 'Histórias de amor eternizadas' },
+  infantil:    { label: 'Festa Infantil',    desc: 'A magia da infância em cada clique' },
+  debutante:   { label: 'Festa 15 Anos',     desc: 'Um sonho que merece ser registrado' },
+  aniversario: { label: 'Festa Adulta',      desc: 'Celebrações inesquecíveis' },
+  prewedd:     { label: 'Ambientes',         desc: 'Espaços e cenários eternizados com arte' },
+  corporativo: { label: 'Corporativo',       desc: 'Eventos, headshots e produtos profissionais' },
+  batizado:    { label: 'Batizados',         desc: 'Momentos sagrados para guardar para sempre' },
+  ensaio:      { label: 'Ensaios Externos',  desc: 'Cumplicidade e amor em cada quadro' },
+  banda:       { label: 'Shows & Bandas',    desc: 'A energia do palco eternizada' },
 };
 
 let allPhotos      = [];
@@ -297,7 +281,7 @@ function initNav() {
     }
   });
 
-  const sections = ['home','catalogos','como','faq','sobre','instagram','contato'];
+  const sections = ['home','catalogos','como','faq','sobre','contato'];
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(id => {
@@ -312,7 +296,6 @@ function initNav() {
 
 /* ══════════════════════════════════════
    CARREGAR FOTOS
-   Prioridade: Google Sheets CSV → DEMO_PHOTOS
 ══════════════════════════════════════ */
 async function loadPhotos() {
   if (CONFIG.SHEET_CSV_URL === 'SUA_PLANILHA_CSV_URL_AQUI') {
